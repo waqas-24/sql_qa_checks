@@ -1,1 +1,10 @@
-# sql_qa_checks
+# SQL QA Checks
+
+This is a short exercise to run some sql based QA checks and show the result in console and simple GUI. This code is developed using Python Version 3.7.5 and the packages you will need are listed in requirements.txt file.
+
+Please follow the steps below to run your SQL QA Checks:
+
+- **Step 1 - Connect to Database** To establish connection with the database you will need to run docker-compose to get mysql database up and running using *docker-compose.yml* file and then call get_db_connection() function. If don't want to run mysql in docker and you already have an instance of mysql then get_db_connection() will need to be updated accordingly.
+- **Step 2 - Initialise Database** Once the connection is established, please initialise the database using initiate_qa_db(). This will create the *qa_checks* database as well as necessary trigger,  *qa_tests* table and *channel_table_tbl1* table for the first test. Once the databse is initialised, please use function *instert_into_qa_tests* to insert your SQL Tests in *qa_tests* table. Please make sure that you add double * at the begining and end of parameters in your SQL code. This allows to replace those parameters with the run time values provided. Also use *instert_into_channel_type* to insert some data to run the first SQL check as it is needed in the SQL text.
+- **Step 3 - Run SQL QA Checks** To run the test you will need to call run_sql_test() function and provide: database connection, Code column value from the qa_tests table such as *qa_ch_1* and provide the parameters and their values for the test.
+- **Step 4 - Evaluate Test Result** Once the sql test has been executed, you will be presented the result in a simple GUI as well as in console. The result information will contain the code value such as *qa_ch_1* the SQL that was executed after replacing the parameters values. The result of the SQL executed and a final message that says whether the test was passed or failed. This is evaluated based on the *exp_result* column of the *qa_tests* table.
